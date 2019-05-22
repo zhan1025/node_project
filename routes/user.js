@@ -69,4 +69,53 @@ router.post('/add', (req, res) =>{
           })
      })
 });
+/**
+ * 修改用户
+ * http://localhost:3000/user/update
+ */
+router.post('/upUser',(req,res)=>{
+    let id= req.body.id;
+//     let nickname=req.body.nickname;
+
+    //使用 UserModel 的修改方法
+    UserModel.updateOne({_id: id},{password:req.body.pwd})
+    .then(data=>{
+          console.log(data);
+          res.send({
+               code: 0,
+               msg: '修改成功'
+             });
+     }).catch(err=>{
+          console.log(err.message);
+          res.send({
+               code: -1,
+               msg: '修改失败'
+             });
+     })
+})
+
+
+/**
+ *删除用户
+ * http://localhost:3000/user/del
+ */
+router.get('/del',(req,res)=>{
+     let id= req.body.id;
+ 
+     //使用 UserModel 的删除方法
+     UserModel.deleteOne({_id: id})
+     .then(data=>{
+           console.log(data);
+           res.send({
+                code: 0,
+                msg: '删除成功'
+              });
+      }).catch(err=>{
+           console.log(err.message);
+           res.send({
+                code: -1,
+                msg: '删除失败'
+              });
+      })
+ })
 module.exports = router;
