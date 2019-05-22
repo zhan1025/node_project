@@ -25,7 +25,7 @@ app.use(express.urlencoded({  extended : false }));
 app.use(express.static(path.resolve(__dirname,'./public')));
 
 //使用用户路由，里面有查找，新增等方法
-app.use('/user',userRouter);
+app.use('/api',userRouter);
 
 // app.get('/',(req,res)=>{
 //      res.send('你好');
