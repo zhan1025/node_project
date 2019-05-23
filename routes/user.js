@@ -1,12 +1,7 @@
 const express = require('express');
-const UserModel = require('../model/user');
+const userCtrl = require('../control/userCtrl');
 const router = express.Router();
-const control = require('../control/userCtrl');
 
-router.route('/user')
-               .get(control.find)
-               .post(control.reg)
-               .delete(control.del)
-               .put(control.update)
-
+router.post('/reg',userCtrl.reg);
+router.post('/login',userCtrl.login);
 module.exports = router;
